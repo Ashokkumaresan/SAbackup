@@ -48,7 +48,7 @@
 						json: true,
 						crossDomain: true,	
 						success: function (data) {	
-							window.location=data;
+							alert(data);
 						},
 						error: function (xhr, status, error) {
 							console.log('Error: ' + error.message);							
