@@ -1,16 +1,19 @@
 var express=require('express');
 var bodyParser=require('body-parser');
+var path=require('path');
 var mongo=require('mongodb');
 var mongoose=require('mongoose');
 var Dairy=require('./models/dairy');
 var app=express();
 app.use('/',express.static(__dirname + '/views'));
+
 app.use(express.static(__dirname));
+//app.set('views',path.join(__dirname,'views'));
 app.use(bodyParser.json());
 //mongoose.connect('mongodb://localhost/SA');
 //mongoose.connect('mongodb://localhost/bookstore');
 var db=mongoose.connection;
-
+app.use(require('./routes/index'));
 //console.log("Server running in port 3000");
 
 /*app.get('/',function(req,res){
@@ -32,7 +35,7 @@ var db=mongoose.connection;
 			
 		}
 	})
-});*/
+});
 app.get('/api/dairy',function(req,res){
 	var query=req.query;
 	console.log(query);
@@ -55,7 +58,7 @@ app.get('/api/dairy',function(req,res){
 			db.close();
 		} 	
 	});
-});
+});*/
 /*app.post('/api/dairy',function(req,res){
 		Dairy.getDairy(function(err,dairy){
 		if(err)
